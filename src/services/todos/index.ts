@@ -8,11 +8,11 @@ export const todosApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: myEnv.JSONPLACEHOLDER_API,
   }),
+  // eslint-disable-next-line consistent-return
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
       return action.payload[reducerPath]
     }
-    return false
   },
   tagTypes: [],
   endpoints: (builder) => ({
