@@ -1,6 +1,10 @@
-import '@knitto/styles/globals.css'
+import { MainLayout } from '@knitto/layouts'
 import type { AppProps } from 'next/app'
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <MainLayout>
+      <Component {...pageProps} />
+    </MainLayout>
+  )
 }

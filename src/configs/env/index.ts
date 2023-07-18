@@ -1,0 +1,3 @@
+export const myEnv = {
+  JSONPLACEHOLDER_API: process.env.NEXT_PUBLIC_JSONPLACEHOLDER_API,
+}
