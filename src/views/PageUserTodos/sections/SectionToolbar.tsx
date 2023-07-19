@@ -22,11 +22,12 @@ export default function SectionToolbar() {
       />
       <LoadingButton
         variant="contained"
+        size="large"
         onClick={handleAddTodo(newTodo, createTodo, dispatch)}
         loading={isLoadNewTodo}
         disabled={!newTodo.title}
       >
-        + Add Todo
+        Add
       </LoadingButton>
     </Box>
   )
