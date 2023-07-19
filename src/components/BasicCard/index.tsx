@@ -1,19 +1,26 @@
-import Card from '@mui/material/Card'
+import Card, { CardProps } from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
+import { styled } from '@mui/material/styles'
 import { BasicCardProps } from './types'
 
-export default function BasicCard(props: BasicCardProps) {
-  const { children, title } = props
+const BasicCard = styled((props: CardProps & BasicCardProps) => {
+  const { title, children } = props
   return (
-    <Card sx={{ width: '80%', overflow: 'scroll' }}>
+    <Card {...props}>
       <CardContent>
         <Stack gap={1}>
-          <Typography sx={{ fontSize: 18 }}>{title}</Typography>
+          <Typography fontWeight="bold" sx={{ fontSize: 18 }}>
+            {title}
+          </Typography>
           {children}
         </Stack>
       </CardContent>
     </Card>
   )
-}
+})(() => ({
+  width: '95%',
+}))
+
+export default BasicCard
