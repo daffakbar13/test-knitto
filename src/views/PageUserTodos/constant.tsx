@@ -7,6 +7,8 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlined'
 import { useCreateTodoMutation, useUpdateTodoMutation } from '@knitto/services/todos'
 import { AnyAction, Dispatch } from '@reduxjs/toolkit'
 import { addTodo, changeNewTodo, loadNewTodo, openConfirmDelete } from '@knitto/utils/stores/todos'
+import Button from '@mui/material/Button'
+import Link from 'next/link'
 
 export namespace Constant {
   export const columns = (
@@ -18,6 +20,7 @@ export namespace Constant {
       field: 'completed',
       disableColumnMenu: true,
       sortable: false,
+      width: 52,
       renderCell({ value, row }) {
         return (
           <Checkbox
@@ -30,7 +33,10 @@ export namespace Constant {
     {
       headerName: 'Todo',
       field: 'title',
+      disableColumnMenu: true,
+      sortable: false,
       editable: true,
+      minWidth: 600,
       flex: 1,
       renderCell({ value, row: { id } }) {
         return (
@@ -53,6 +59,25 @@ export namespace Constant {
           updateTodo({ ...row, title: value })
         }
         return value
+      },
+    },
+    {
+      headerName: 'Action',
+      field: 'action',
+      disableColumnMenu: true,
+      sortable: false,
+      minWidth: 120,
+      renderCell({ row: { id } }) {
+        return (
+          <Link
+            href={{
+              pathname: `${Router.pathname}/[todoId]`,
+              query: { id: Router.query.id, todoId: id },
+            }}
+          >
+            <Button variant="outlined">View Detail</Button>
+          </Link>
+        )
       },
     },
   ]

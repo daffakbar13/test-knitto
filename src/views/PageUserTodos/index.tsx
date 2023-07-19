@@ -4,7 +4,7 @@ import { PageUserTodosProps } from 'pages/users/[id]/todos'
 import { useDispatch } from 'react-redux'
 import { setRowCount, setTodos } from '@knitto/utils/stores/todos'
 import React from 'react'
-import { BasicCard } from '@knitto/components'
+import { BackButton, BasicCard } from '@knitto/components'
 import { SectionConfirmDelete, SectionTable, SectionToolbar } from './sections'
 
 const Page: NextPage<PageUserTodosProps> = (props: PageUserTodosProps) => {
@@ -20,6 +20,7 @@ const Page: NextPage<PageUserTodosProps> = (props: PageUserTodosProps) => {
 
   return (
     <>
+      <BackButton href="/users/list" />
       {rows.isSuccess && (
         <>
           <BasicCard title="Todo List">

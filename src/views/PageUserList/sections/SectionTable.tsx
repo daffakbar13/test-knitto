@@ -11,6 +11,7 @@ export default function SectionTable(props: PageUserListProps) {
 
   return (
     <DataGrid
+      sx={{ maxHeight: 400, maxWidth: '100%', textOverflow: 'unset' }}
       rows={data || []}
       columns={columns}
       initialState={{
@@ -23,6 +24,7 @@ export default function SectionTable(props: PageUserListProps) {
       pageSizeOptions={pageSizeOptions}
       loading={isLoading}
       rowCount={rowCount}
+      rowSelection={false}
     />
   )
 }

@@ -1,17 +1,27 @@
 import { User } from '@knitto/services/users/types'
-import { Link } from '@mui/material'
 import Button from '@mui/material/Button'
+import Link from '@mui/material/Link'
 import { GridColDef, GridPaginationModel } from '@mui/x-data-grid'
+import NextLink from 'next/link'
 import Router from 'next/router'
 
 export namespace Constant {
   export const columns: GridColDef<User>[] = [
-    { headerName: 'ID', field: 'id' },
-    { headerName: 'Name', field: 'name', flex: 2 },
+    { headerName: 'ID', field: 'id', disableColumnMenu: true, sortable: false, width: 52 },
+    {
+      headerName: 'Name',
+      field: 'name',
+      disableColumnMenu: true,
+      sortable: false,
+      flex: 1,
+      minWidth: 200,
+    },
     {
       headerName: 'Email',
       field: 'email',
-      flex: 1,
+      disableColumnMenu: true,
+      sortable: false,
+      minWidth: 200,
       renderCell({ value }) {
         return (
           <Link href={`mailto:${value}`} target="_blank">
@@ -23,7 +33,8 @@ export namespace Constant {
     {
       headerName: 'Website',
       field: 'website',
-      flex: 1,
+      disableColumnMenu: true,
+      sortable: false,
       renderCell({ value }) {
         return (
           <Link href={`https://${value}`} target="_blank">
@@ -37,20 +48,17 @@ export namespace Constant {
       field: 'action',
       disableColumnMenu: true,
       sortable: false,
+      minWidth: 120,
       renderCell({ row: { id } }) {
         return (
-          <Button
-            variant="text"
-            size="small"
-            onClick={() =>
-              Router.push({
-                pathname: '/users/[id]/todos',
-                query: { id },
-              })
-            }
+          <NextLink
+            href={{
+              pathname: '/users/[id]/todos',
+              query: { id },
+            }}
           >
-            View Todos
-          </Button>
+            <Button variant="outlined">View Todos</Button>
+          </NextLink>
         )
       },
     },

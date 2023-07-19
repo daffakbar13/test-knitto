@@ -17,6 +17,7 @@ export default function SectionTable(props: PageUserTodosProps) {
   return (
     <DataGrid
       rows={todos}
+      sx={{ maxHeight: 400, overflow: 'scroll' }}
       columns={columns(dispatch, updateTodo)}
       initialState={{
         pagination: {
